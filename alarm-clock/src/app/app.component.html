@@ -1,0 +1,39 @@
+<main class="app">
+  <section class="clock">
+    <div class="time">{{ now | date: 'hh:mm:ss' }}<span class="ampm">{{ now | date: 'a' }}</span></div>
+    <div class="date">{{ now | date: 'fullDate' }}</div>
+  </section>
+
+  <form class="add" (ngSubmit)="addAlarm()">
+    <input type="time" name="time" [(ngModel)]="newTime" required aria-label="Alarm time" />
+    <input type="text" name="label" [(ngModel)]="newLabel" placeholder="Label (optional)" maxlength="40" aria-label="Alarm label" />
+    <button type="submit">Set alarm</button>
+  </form>
+
+  <ul class="alarms">
+    <li *ngFor="let a of sortedAlarms" [class.off]="!a.enabled">
+      <div class="info">
+        <span class="when">{{ format(a.time) }}</span>
+        <span class="label">{{ a.label || 'Alarm' }}</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" [checked]="a.enabled" (change)="toggle(a)" [attr.aria-label]="'Enable alarm ' + a.time" />
+        <span></span>
+      </label>
+      <button class="del" (click)="remove(a)" aria-label="Delete alarm">✕</button>
+    </li>
+    <li *ngIf="!alarms.length" class="empty">No alarms yet. Pick a time above.</li>
+  </ul>
+</main>
+
+<div class="overlay" *ngIf="ringing" role="alertdialog" aria-live="assertive">
+  <div class="modal">
+    <div class="bell">⏰</div>
+    <h2>{{ ringing.label || 'Alarm' }}</h2>
+    <p>{{ format(ringing.time) }}</p>
+    <div class="actions">
+      <button (click)="snooze()">Snooze 5 min</button>
+      <button class="primary" (click)="dismiss()">Dismiss</button>
+    </div>
+  </div>
+</div>

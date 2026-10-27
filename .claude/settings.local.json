@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd C:\\\\repo\\\\clock-timer-sample; $env:NG_CLI_ANALYTICS=\"false\"; npx -y @angular/cli@15 new alarm-clock --defaults --skip-git --style=css --routing=false --skip-tests 2>&1 | Select-Object -Last 15)",
+      "PowerShell(cd C:\\\\repo\\\\clock-timer-sample\\\\alarm-clock; $env:NG_CLI_ANALYTICS=\"false\"; npx ng build 2>&1 | Select-Object -Last 20)"
+    ]
+  }
+}
