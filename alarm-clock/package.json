@@ -1,6 +1,7 @@
 {
   "name": "alarm-clock",
   "version": "0.0.0",
+  "rebarAI": "@rebar/ai:test-booster : 20261102",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

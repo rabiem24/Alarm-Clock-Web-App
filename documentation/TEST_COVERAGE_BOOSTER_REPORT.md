@@ -22,6 +22,24 @@
 | Functions | 15 | 23 | 65.21% |
 | Lines | 36 | 69 | 52.17% |
 
+| 2 | app.component.spec.ts (extended) | 53.16% stmts | 100% stmts / branches / functions / lines | +46.8% (est. +25-32%) | 54 pass, 0 fail | done |
+| 3 | (Web Audio, planned) | 100% | 100% | +0% | n/a | skipped: already covered by Batch 2 (at or below 2-point threshold) |
+| 4 | (module/template smoke, optional) | 100% | n/a | est. +1-2% | n/a | not run: low-yield, not approved, target already met |
+
+### Final results (full suite: `npx ng test --watch=false --code-coverage --browsers=ChromeHeadless`)
+
+| Metric | Covered | Total | % |
+|--------|---------|-------|---|
+| Statements | 79 | 79 | 100% |
+| Branches | 25 | 25 | 100% |
+| Functions | 23 | 23 | 100% |
+| Lines | 69 | 69 | 100% |
+
+- **Tests**: 54 passing, 0 failing, 0 skipped (about 0.65 s in Chrome Headless).
+- **Scope caveat**: the coverage report includes only `app.component.ts`. `app.module.ts` and `main.ts` are not imported by any spec, so they are not in the totals (see plan, Excluded Files).
+- **Fingerprint**: `"rebarAI": "@rebar/ai:test-booster : 20261102"` added to `alarm-clock/package.json`.
+
 ## Issues
 - The plan's ~130-line total was an overestimate; Istanbul counts 69 lines / 79 statements in `app.component.ts`. Gain estimates for later batches are re-based on these totals.
+- Time mocking in the spec uses `jasmine.clock().mockDate` (not `fakeAsync`) so tests that need a fixed HH:mm do not depend on the real clock.
 - Coverage output folder is `alarm-clock/coverage/` (git-ignored).
